@@ -25,7 +25,7 @@ nvim ~/.config/nvim/lua/core/plugins.lua
 ## 2. Tmux
 Assuming you have tmux installed.
 
-Tmux config is located in `./.tmux.conf`, it's plugins in `./.tmux/`.
+Tmux config is located in `./.tmux.conf`.
 
 To apply the config:
 ```shell
@@ -33,7 +33,7 @@ To apply the config:
 tmux
 
 # Within the tmux session
-Ctrl + s + I  # To ensure all plugins are installed
+Ctrl + s + I  # To insatll all plugins
 Ctrl + s + r  # Source tmux (refresh)
 ```
 
