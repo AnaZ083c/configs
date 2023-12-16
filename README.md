@@ -11,7 +11,9 @@ cp ~/path/to/this/repo/.config/nvim ~/.config/nvim
 ```
 You may or may not have to install dependencies for all the plugins to work. If something doesn't work as intended, please take a look at one of the nvim config videos listed among sources below.
 
-It is recommended to watch at least the first video for neovim config, to get you started with the basics of configuring neovim using lua and Packer pacgage manager.
+It is recommended to watch at least the first video for neovim config, to get you started with the basics of configuring neovim using lua and Packer package manager.
+
+- Packer official docs/repo: https://github.com/wbthomason/packer.nvim
 
 To check if everything works:
 ```shell
