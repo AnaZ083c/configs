@@ -52,6 +52,12 @@ return require('packer').startup(function(use)
   use "tpope/vim-fugitive"
   use "lewis6991/gitsigns.nvim"
   use "terrortylor/nvim-comment"
+
+  -- DAP - debuggers
+  use "mfussenegger/nvim-dap"
+  use 'mfussenegger/nvim-dap-python'
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use 'theHamsta/nvim-dap-virtual-text'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
