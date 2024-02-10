@@ -1,9 +1,28 @@
-# Description
-This repo consists of **neovim**, **tmux** and other configs.
+# Linux (Ubuntu) Development Environment
+The purpose of this repo is to create development enviroment as efficient as possible - as independent of the mouse as much as possible
+
+## Table of Contents
+- [1. Neovim setup](#1-neovim)
+- [2. Tmux and Tmuxifier setup](#2-tmux)
+- [3. i3 Window Manager](#3-i3-window-manager)
+- [4. Sources](#sources)
+
 
 # Setup
 ## 1. Neovim
-Assuming you have neovim installed.
+**Install neovim**
+```shell
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux64.tar.gz
+
+export PATH="$PATH:/opt/nvim-linux64/bin"
+```
+
+To make `nvim` your default text editor, add this to your shell config (could be `.zshrc` or `.bashrc`)
+```shell
+export EDITOR='nvim'
+```
 
 Neovim config is located in `./.config/nvim`, to apply this config, simply:
 ```shell
@@ -25,7 +44,11 @@ nvim ~/.config/nvim/lua/core/plugins.lua
 ```
 
 ## 2. Tmux
-Assuming you have tmux installed.
+**Install tmux**
+```shell
+sudo apt update
+sudo apt install tmux
+```
 
 Tmux config is located in `./.tmux.conf`.
 
@@ -35,7 +58,7 @@ To apply the config:
 tmux
 
 # Within the tmux session
-Ctrl + s + I  # To insatll all plugins
+Ctrl + s + I  # To install all plugins
 Ctrl + s + r  # Source tmux (refresh)
 ```
 
@@ -55,6 +78,62 @@ export PATH="$HOME/.tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 ```
 
+## 3. i3 Window Manager
+That's to make your desktop environment not as dependant on mouse clicking as the default would be.
+
+### Requirements
+| package | what for |
+| ------- | -------- |
+| feh     | setting up a wallpaper   |
+| redshift | setting up a color temperature |
+| i3lock | locking the screen |
+| brightnessctl | adjusting screen brightness |
+| playerctl | audio player keyboard controlls (pause, resume, skip, go back) |
+
+**Note**: you'll also need to install a `CodeNewRoman Nerd Font Mono` to make all the icons work properly.
+
+### 1. install i3
+```shell
+# For Ubuntu
+/usr/lib/apt/apt-helper download-file https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2023.02.18_all.deb keyring.deb SHA256:a511ac5f10cd811f8a4ca44d665f2fa1add7a9f09bef238cdfad8461f5239cc4
+sudo apt install ./keyring.deb
+echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" | sudo tee /etc/apt/sources.list.d/sur5r-i3.list
+sudo apt update
+sudo apt install i3
+```
+
+### 2. install requirements
+```shell
+sudo apt update
+sudo apt install feh redshift i3lock brightnessctl playerctl
+```
+**Install font**
+
+```shell
+# If you don't have ~/.fonts/ directory yet
+mkdir ~/.fonts/
+
+# Install
+curl -L https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/CodeNewRoman.zip -o ~/.fonts/CodeNewRoman.zip && unzip ~/.fonts/CodeNewRoman.zip
+
+reboot
+```
+
+### 3. After reboot
+1. Click on your user profile
+2. On the boottom right corner, click on the cog wheel and select `i3`
+3. Log in with your password
+4. Go through `i3` wizard (make sure to select `yes` to generating a config)
+
+**Note**: it might take some time to startup on the first time, because `i3` setting up.
+
+### 4. Using this repo's config
+1. Clone this repo wherever you like
+2. Copy `this-repo/.config/i3` and `this-repo/.config/i3status` into `~/.config/`
+```shell
+cp path-to-this-repo/.config/i3* ~/.config/
+```
+
 ## Sources
 ### NVIM config
 1. Make nvim fancy, nvim plugin manager, nvim lua config structure (basics): https://youtu.be/J9yqSdvAKXY?list=PLsz00TDipIffxsNXSkskknolKShdbcALR
@@ -68,3 +147,12 @@ eval "$(tmuxifier init -)"
 
 ### Tmuxifier repo
 - https://github.com/jimeh/tmuxifier
+
+### i3 docs
+1. Installation guide: https://i3wm.org/docs/repositories.html
+2. User guide for config: https://i3wm.org/docs/userguide.html
+3. Config docs for i3bar: https://i3wm.org/docs/userguide.html#_configuring_i3bar
+4. Config docs for i3status: https://i3wm.org/docs/i3status.html
+
+### Other useful links for customizing your setup
+1. Color pallete: https://coolors.co/231f3b-18152e-4f497f-6157a9-eadaa2
