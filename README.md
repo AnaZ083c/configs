@@ -1,5 +1,5 @@
 # Linux (Ubuntu) Development Environment
-The purpose of this repo is to create development enviroment as efficient as possible - as independent of the mouse as much as possible
+The purpose of this repo is to create a development enviroment that is as efficient to a developer as possible; as independent of the mouse as much as possible.
 
 ## Table of Contents
 - [1. Neovim setup](#1-neovim)
@@ -107,8 +107,8 @@ sudo apt install i3
 sudo apt update
 sudo apt install feh redshift i3lock brightnessctl playerctl
 ```
-**Install font**
 
+**Install font**
 ```shell
 # If you don't have ~/.fonts/ directory yet
 mkdir ~/.fonts/
@@ -125,7 +125,7 @@ reboot
 3. Log in with your password
 4. Go through `i3` wizard (make sure to select `yes` to generating a config)
 
-**Note**: it might take some time to startup on the first time, because `i3` setting up.
+**Note**: it might take some time to startup on the first time, because of `i3` setting up.
 
 ### 4. Using this repo's config
 1. Clone this repo wherever you like
