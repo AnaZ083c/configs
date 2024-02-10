@@ -213,6 +213,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/anazobec/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-one"] = {
+    loaded = true,
+    path = "/home/anazobec/.local/share/nvim/site/pack/packer/start/vim-one",
+    url = "https://github.com/rakr/vim-one"
   }
 }
 
