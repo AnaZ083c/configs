@@ -133,6 +133,8 @@ reboot
 ```shell
 cp path-to-this-repo/.config/i3* ~/.config/
 ```
+3. Reload your config file: `$mod+Shift+c`
+    - `$mod` is whatever key you chose in the setup wizard; it could be `Alt` or `Win`
 
 ## Sources
 ### NVIM config
