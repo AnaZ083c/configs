@@ -1,5 +1,5 @@
 # Linux (Ubuntu) Development Environment
-The purpose of this repo is to create a development enviroment that is as efficient to a developer as possible; as independent of the mouse as much as possible.
+The purpose of this repo is to create a development enviroment that is as efficient to a developer as possible; independent of the mouse as much as possible.
 
 ## Table of Contents
 - [1. Neovim setup](#1-neovim)
