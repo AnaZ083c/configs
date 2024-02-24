@@ -52,6 +52,11 @@ sudo apt install tmux
 
 Tmux config is located in `./.tmux.conf`.
 
+**Install tmux plugin manager**
+```shell
+git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
+```
+
 To apply the config:
 ```shell
 # Start tmux
