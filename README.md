@@ -15,12 +15,11 @@ The purpose of this repo is to create a development enviroment that is as effici
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim
 sudo tar -C /opt -xzf nvim-linux64.tar.gz
-
-export PATH="$PATH:/opt/nvim-linux64/bin"
 ```
 
 To make `nvim` your default text editor, add this to your shell config (could be `.zshrc` or `.bashrc`)
 ```shell
+export PATH="$PATH:/opt/nvim-linux64/bin"
 export EDITOR='nvim'
 ```
 
