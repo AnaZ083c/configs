@@ -24,6 +24,15 @@ To make `nvim` your default text editor, add this to your shell config (could be
 export EDITOR='nvim'
 ```
 
+**Install requirements**
+
+First install requirements for the LSP plugin to work:
+```shell
+sudo apt install nodejs npm exuberant-ctags silversearcher-ag
+```
+
+**Install the config**
+
 Neovim config is located in `./.config/nvim`, to apply this config, simply:
 ```shell
 cp -r ~/path/to/this/repo/.config/nvim ~/.config/nvim
@@ -42,6 +51,9 @@ nvim ~/.config/nvim/lua/core/plugins.lua
 :PackerSync
 # This is to ensure all plugins are installed and up to date
 ```
+**NOTE:** The first run might take a while because the plugins are auto-installing and you might get some error messages displayed, but that's okay.
+
+Once everything is done installing (you should see a list of packages on the left side pane). When you get that, simply quit neovim, reopen it, and run `:PackerSync` to make sure all packages are installed and up to date.
 
 ## 2. Tmux
 **Install tmux**
