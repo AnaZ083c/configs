@@ -27,7 +27,7 @@ export EDITOR='nvim'
 
 First install requirements for the LSP plugin to work:
 ```shell
-sudo apt install nodejs npm exuberant-ctags silversearcher-ag
+sudo apt install nodejs npm exuberant-ctags silversearcher-ag ripgrep fd-find
 ```
 
 **Install the config**
