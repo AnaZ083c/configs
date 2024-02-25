@@ -26,7 +26,7 @@ export EDITOR='nvim'
 
 Neovim config is located in `./.config/nvim`, to apply this config, simply:
 ```shell
-cp ~/path/to/this/repo/.config/nvim ~/.config/nvim
+cp -r ~/path/to/this/repo/.config/nvim ~/.config/nvim
 ```
 You may or may not have to install dependencies for all the plugins to work. If something doesn't work as intended, please take a look at one of the nvim config videos listed among sources below.
 
