@@ -1,8 +1,8 @@
 # Basic usage of this configuration (keymaps and other how-tos)
 
-`<leader>` ... space
-`<S>` ... shift
-`<C>` ... ctrl
+* `<leader>` ... space
+* `<S>` ... shift
+* `<C>` ... ctrl
 
 ## 1. Vim Git
 | keymap | what it does |
