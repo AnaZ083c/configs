@@ -2,10 +2,10 @@
 The purpose of this repo is to create a development enviroment that is as efficient to a developer as possible; independent of the mouse as much as possible.
 
 ## Table of Contents
-- [1. Neovim setup](#1-neovim)
-- [2. Tmux and Tmuxifier setup](#2-tmux)
-- [3. i3 Window Manager](#3-i3-window-manager)
-- [4. Sources](#sources)
+1. [Neovim setup](#1-neovim)
+2. [Tmux and Tmuxifier setup](#2-tmux)
+3. [i3 Window Manager](#3-i3-window-manager)
+4. [Sources](#sources)
 
 
 # Setup
