@@ -1,8 +1,8 @@
 # Basic usage of this configuration (keymaps and other how-tos)
 
-* `<leader>` ... space
-* `<S>` ... shift
-* `<C>` ... ctrl
+* `<leader>` == space
+* `<S>` == shift
+* `<C>` == ctrl
 
 ## 1. Vim Git
 | keymap | what it does |
@@ -44,7 +44,7 @@ python -m venv debugpy
 debugpy/bin/python -m pip install debugpy
 ```
 
-**NOTE**: This configuration also accepts vscode launch configurations. To use those, simply create a `.vscode/launch.json` 
+**NOTE**: This configuration also accepts vscode launch configurations. To use those, simply create a `.vscode/launch.json` inside your workspace (your project root directory)
 as you normally would when developing in VSCode. Then, to load this configuration, press `F5` and choose your configuration 
 from the prompt.
 
