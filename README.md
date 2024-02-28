@@ -3,14 +3,15 @@ The purpose of this repo is to create a development enviroment that is as effici
 
 ## Table of Contents
 1. [Neovim setup](#1-neovim)
-2. [Tmux and Tmuxifier setup](#2-tmux)
-3. [i3 Window Manager](#3-i3-window-manager)
-4. [Sources](#sources)
+    - [How-To-Use guide for this specific config](./.config/nvim/README.md)
+3. [Tmux and Tmuxifier setup](#2-tmux)
+4. [i3 Window Manager](#3-i3-window-manager)
+5. [Sources](#sources)
 
 
 # Setup
-## 1. Neovim
-**Install neovim**
+## 1. NeoVim
+**Install NeoVim**
 ```shell
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 sudo rm -rf /opt/nvim
@@ -38,7 +39,7 @@ cp -r ~/path/to/this/repo/.config/nvim ~/.config/nvim
 ```
 You may or may not have to install dependencies for all the plugins to work. If something doesn't work as intended, please take a look at one of the nvim config videos listed among sources below.
 
-It is recommended to watch at least the first video for neovim config, to get you started with the basics of configuring neovim using lua and Packer package manager.
+It is recommended to watch at least the first video for NeoVim config, to get you started with the basics of configuring neovim using lua and Packer package manager.
 
 - Packer official docs/repo: https://github.com/wbthomason/packer.nvim
 
@@ -53,6 +54,8 @@ nvim ~/.config/nvim/lua/core/plugins.lua
 **NOTE:** The first run might take a while because the plugins are auto-installing and you might get some error messages displayed, but that's okay.
 
 Once everything is done installing (you should see a list of packages on the left side pane). When you get that, simply quit neovim, reopen it, and run `:PackerSync` to make sure all packages are installed and up to date.
+
+**NOTE:** To get you started with using this specific NeoVim config, this [How-To-Use guide for this specific config](./.config/nvim/README.md) may come in handy.
 
 ## 2. Tmux
 **Install tmux**
