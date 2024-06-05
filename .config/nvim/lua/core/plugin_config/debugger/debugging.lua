@@ -4,6 +4,12 @@ local dapui = require("dapui")
 local dap = require('dap')
 local dap_ext_vscode = require('dap.ext.vscode')
 local dap_python = require('dap-python')
+
+-- local helper = require('lua.core.plugin_config.debugger.helper')
+--
+-- local debugpy_path = helper.get_debugpy("~/.virtualenvs")
+-- print("debugpy_path:", debugpy_path)
+
 dap_python.setup('~/.virtualenvs/debugpy/bin/python')
 require('nvim-dap-virtual-text').setup()
 

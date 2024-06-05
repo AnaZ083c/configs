@@ -16,6 +16,7 @@ require'nvim-treesitter.configs'.setup {
     "css",
     "scss",
     "markdown",
+    "markdown_inline",
     "go"
   },
 

@@ -14,13 +14,16 @@ local packer_bootstrap = ensure_packer()
 -- Plugins go here --
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
-  -- My plugins here
-  -- use 'foo1/bar1.nvim'
-  -- use 'foo2/bar2.nvim'
+
+  -- colorschemes
   use 'ellisonleao/gruvbox.nvim'
   use 'tiagovla/tokyodark.nvim'
   use 'rakr/vim-one'
+  use 'stankovictab/mgz.nvim'
+  use 'rafalbromirski/vim-aurora'
+  use 'yonlu/omni.vim'
 
+  -- misc 
   use 'nvim-tree/nvim-tree.lua'
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
@@ -57,7 +60,7 @@ return require('packer').startup(function(use)
   -- DAP - debuggers
   use "mfussenegger/nvim-dap"
   use 'mfussenegger/nvim-dap-python'
-  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
   use 'theHamsta/nvim-dap-virtual-text'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
