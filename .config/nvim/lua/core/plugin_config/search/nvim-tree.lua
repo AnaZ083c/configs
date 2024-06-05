@@ -14,8 +14,12 @@ require("nvim-tree").setup({
     },
   },
   view = {
-    side = "left",
-  }
+    side = "right",
+  },
+  filters = {
+    dotfiles = false,
+    git_ignored = false,
+  },
 })
 
 vim.keymap.set('n', '<c-n>', ':NvimTreeFindFileToggle<CR>')

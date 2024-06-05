@@ -3,6 +3,7 @@ local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require("cmp")
 
 require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load({paths = {"~/.config/nvim/snippets"}})
 
 cmp.event:on(
   'confirm_done',
