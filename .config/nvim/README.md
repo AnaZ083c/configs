@@ -31,6 +31,8 @@
 | `<leader>fg` | grep through files (live grep) |
 | `<leader>fh` | grep through nvim docs (live grep) |
 | `<leader>fk` | grep through nvim keymaps |
+| `<leader>fc` | grep through nvim colorschemes |
+| `<leader>fp` | pick a Python debugger |
 
 
 ## 4. Vim DAP (Debug Adapter Protocol)
