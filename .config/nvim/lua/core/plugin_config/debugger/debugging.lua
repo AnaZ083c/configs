@@ -1,17 +1,15 @@
-require('dapui').setup()
+require("dapui").setup()
 
 local dapui = require("dapui")
-local dap = require('dap')
-local dap_ext_vscode = require('dap.ext.vscode')
-local dap_python = require('dap-python')
+local dap = require("dap")
+local dap_ext_vscode = require("dap.ext.vscode")
+local dap_python = require("dap-python")
 
--- local helper = require('lua.core.plugin_config.debugger.helper')
---
--- local debugpy_path = helper.get_debugpy("~/.virtualenvs")
--- print("debugpy_path:", debugpy_path)
+local helper = require("core.plugin_config.debugger.helper")
 
-dap_python.setup('~/.virtualenvs/debugpy/bin/python')
-require('nvim-dap-virtual-text').setup()
+-- Default debugpy setup
+dap_python.setup("~/.virtualenvs/debugpy/bin/python")
+require("nvim-dap-virtual-text").setup()
 
 -- Look and feel
 vim.fn.sign_define('DapBreakpoint', { text='🐞', texthl='DapBreakpoint', linehl='DapBreakpoint', numhl='DapBreakpoint' })
@@ -26,6 +24,9 @@ vim.api.nvim_set_keymap('n', '<leader>dt', ':lua require("dapui").toggle()<CR>',
 vim.api.nvim_set_keymap('n', '<leader>dr', ':lua require("dapui").open({reset = true})<CR>', {noremap=true})
 vim.keymap.set("n", "<F5>",
   function()
+    if vim.bo.filetype == "python" then
+      dap_python.setup(helper.get_debugpy(helper.constants.DEBUGPY_VENV_DIR))
+    end
     dap_ext_vscode.load_launchjs(nil, {})
     dap.continue()
   end
