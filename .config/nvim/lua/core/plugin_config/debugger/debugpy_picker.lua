@@ -5,41 +5,10 @@ local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 local dap_python = require('dap-python')
 
--- local helper = require('lua.core.plugin_config.debugger.helper')
+local helper = require("core.plugin_config.debugger.helper")
 
 
-local python_debuggers_path = "~/.virtualenvs/"
-
-
-local function get_python_venvs(directory)
-    local debuggers = {}
-
-    local directories = io.popen("find " ..directory.. " -maxdepth 1 -type d | sed 1d")
-    if directories == nil then
-      print("No debuggers found.")
-      return {}
-    end
-
-    local i = 1
-    for debugger in directories:lines() do
-      -- get python version 
-      local version = io.popen(debugger.. "/bin/python --version")
-      if version == nil then
-        print("Couldn't get versions.")
-        return {}
-      end
-      local python_version = version:read("*a"):gsub("\n", "")
-      version:close()
-
-      -- get relative paths
-      debuggers[#debuggers+1] = { "󰌠 ".. python_version, debugger .. "/bin/python" }
-
-      i = i + 1
-    end
-    directories:close()
-
-    return debuggers
-end
+local python_debuggers_path = helper.constants.DEBUGPY_VENV_DIR
 
 
 local function enter(prompt_bufnr)
@@ -47,7 +16,7 @@ local function enter(prompt_bufnr)
   local debugger = vim.inspect(selected.value[2])
 
   dap_python.setup(debugger)
-  vim.schedule(function() vim.api.nvim_out_write("Debugger set to: ".. selected.value[1] .."\n") end)
+  vim.schedule(function() vim.api.nvim_out_write("Debugger set to: " .. selected.value[1] .. "\n") end)
 
   actions.close(prompt_bufnr)
 end
@@ -67,7 +36,7 @@ local appearance = {
 local opts = {
   prompt_title = "Python debuggers",
   finder = finders.new_table {
-    results = get_python_venvs(python_debuggers_path),
+    results = helper.get_python_venvs(python_debuggers_path, "󰌠"),
     entry_maker = function(entry)
       return {
         value = entry,
