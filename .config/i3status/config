@@ -14,38 +14,46 @@ general {
 
 order += "wireless _first_"
 order += "ethernet _first_"
+order += "path_exists VPN"
 order += "volume master"
 order += "battery all"
 order += "disk /"
-order += "load"
+# order += "load"
 order += "memory"
 order += "tztime local"
 
 
 wireless _first_ {
-        format_up = "W: (%quality at %essid) %ip"
-        format_down = "W: down"
+        format_up = "󰖩 : (%quality at %essid) %ip"
+        format_down = "󱛅 : down"
 }
 
 ethernet _first_ {
-        format_up = "E: %ip (%speed)"
-        format_down = "E: down"
+        format_up = " : %ip (%speed)"
+        format_down = "󰲛 : down"
+}
+
+path_exists VPN {
+        # path exists when a VPN tunnel launched by nmcli/nm-applet is active
+        format = " : %status"
+        format_down = " : down"
+        path = "/proc/sys/net/ipv4/conf/fctvpnaa66a288"
 }
 
 battery all {
         format = "%status %percentage %remaining"
         format_down = "No battery"
         integer_battery_capacity = true
-        status_chr = "⚡ CHR"
-        status_bat = " BAT"
-        status_unk = " UNK"
-        status_full = " FULL"
+        status_chr = " CHR"
+        status_bat = "󰻹 BAT"
+        status_unk = " UNK"
+        status_full = " FULL"
         path = "/sys/class/power_supply/BAT%d/uevent"
         low_threshold = 10
 }
 
 disk "/" {
-        format = " %avail"
+        format = "󱛟 %avail"
 }
 
 load {
@@ -53,13 +61,13 @@ load {
 }
 
 memory {
-        format = " %used : %available"
+        format = "󰍛 %used : %available"
         threshold_degraded = "1G"
         format_degraded = "MEMORY < %available"
 }
 
 tztime local {
-        format = "%H:%M:%S %d/%m/%Y"
+        format = "󱛡 %H:%M:%S %d/%m/%Y"
 }
 
 volume master {

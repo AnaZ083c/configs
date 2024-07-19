@@ -9,11 +9,42 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# mod = Alt, sup = WinKey
 set $mod Mod1
+set $sup Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:CodeNewRoman Nerd Font Mono 12
+font pango:SauceCodePro Nerd Font Medium 12
+
+# Catppuccin theme
+# Macchiato
+set $rosewater #f4dbd6
+set $flamingo #f0c6c6
+set $pink #f5bde6
+set $mauve #c6a0f6
+set $red #ed8796
+set $maroon #ee99a0
+set $peach #f5a97f
+set $yellow #eed49f
+set $green #a6da95
+set $teal #8bd5ca
+set $sky #91d7e3
+set $sapphire #7dc4e4
+set $blue #8aadf4
+set $lavender #b7bdf8
+set $text #cad3f5
+set $subtext1 #b8c0e0
+set $subtext0 #a5adcb
+set $overlay2 #939ab7
+set $overlay1 #8087a2
+set $overlay0 #6e738d
+set $surface2 #5b6078
+set $surface1 #494d64
+set $surface0 #363a4f
+set $base #24273a
+set $mantle #1e2030
+set $crust #181926
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -36,8 +67,8 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ +2% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume @DEFAULT_SINK@ -2% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
@@ -45,11 +76,16 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%- 
 
-# Media player controls
+
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioPause exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
+
+
+# Screenshot selection to clipboard
+bindsym $mod+Shift+s exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -59,13 +95,17 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $sup+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id dmenu_run
+# nb: normal background
+# nf: normal foreground
+# sb: selected background
+# sf: selected foreground
+bindsym $mod+d exec --no-startup-id dmenu_run -nb "#24273a" -nf "#cad3f5" -sb "#8aadf4" -sf "#24273a" -fn "SauceCodePro Nerd Font Medium"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -166,8 +206,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # lock screen
-# bindsym $mod+Control+Return exec "i3lock -c 303030"
-bindsym $mod+Control+Return exec "i3lock -i ~/Wallpapers/wall.png -t -f -e"
+# bindsym $mod+Control+Return exec "i3lock -i ~/Wallpapers/lock1920x1080.png -t -f -e"
+bindsym $mod+Control+Return exec "i3lock -c 000000 -t -f -e"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -196,36 +236,76 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Wallpaper
-exec_always feh --bg-fil ~/Wallpapers/wall.jpg
+# ----- Multiple monitor configs
+# Multiple displays
+include $HOME/.config/i3/workspaces.conf
 
-# Multiple displays - WFH
-exec_always xrandr --output eDP --right-of HDMI-A-0
+exec_always --no-startup-id $HOME/.config/i3/display.sh
+set $workMonitor DisplayPort-1
+set $primaryMonitor eDP
+
+# eDP (Laptop display) --> 1920x1200  16:10  60.0 Hz
+# DisplayPort-1/2 --> 3840x2160  16:9  29.56 Hz
 
 # Disable auto suspend
-exec_always xset s off
+exec --no-startup-id xset s off -dpms
 
 # Enable night light
-exec_always redshift -P -O 4700
+exec --no-startup-id redshift -P -O 4000
+
+# Start emacs client on startup for faster loading times
+# exec --no-startup-id emacsclient -c -a 'emacs'
+
+########
+# THEME
+########
+# set primary gruvbox colorscheme colors
+# set $bg #282828ff
+# set $red #cc241dff
+# set $green #98971aff
+# set $yellow #d79921ff
+# set $blue #458588ff
+# set $purple #b16286ff
+# set $aqua #689d68ff
+# set $gray #a89984ff
+# set $darkgray #1d2021ff
+
 
 # ------- Customize border colors
+# green gruvbox
 # class                 border  backgr. text    indicator child_border
-client.focused          #231F3B #231F3B #ffffff #231F3B   #231F3B
-client.focused_inactive #18152E #18152E #ffffff #484e50   #18152E
-client.unfocused        #18152E #18152E #888888 #292d2e   #18152E
-client.urgent           #817ABD #4f497f #ffffff #4f497f   #4f497f
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+#client.focused          $green $green $darkgray $purple $darkgray
+#client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+#client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+#client.urgent           $red $red $white $red $red
 
-client.background       #ffffff
+# blue gruvbox
+# class                 border|backgr|text|indicator|child_border
+# client.focused          $blue $blue $darkgray $purple $darkgray
+# client.focused_inactive $darkgray $darkgray $yellow $purple $darkgray
+# client.unfocused        $darkgray $darkgray $yellow $purple $darkgray
+# client.urgent           $red $red $white $red $red
+#
+# client.background       $darkgray
+
+
+
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
 # ------- END
 
 # ------- Gaps
 # Configure 5px of space between windows and to the screen edges.
-gaps inner 10
+gaps inner 5
 
 # Configure an additional 5px of extra space to the screen edges,
 # for a total gap of 10px to the screen edges, and 5px between windows.
-gaps outer 10
+gaps outer 5
 
 # Overwrite gaps to 0, I need all the space I can get on workspace 3.
 #workspace 3 gaps inner 0
@@ -248,7 +328,7 @@ bindsym mod4+s [title="^Sup ::"] scratchpad show
 
 # --------- Power menu 
 mode "exit: [0]lock, [1]logout, [2]reboot, [3]shutdown" {
-  bindsym 0 exec "i3lock -i ~/Wallpapers/wall.png -t -f -e"
+  bindsym 0 exec "i3lock -i ~/Wallpapers/lock.png -t -f -e"
   bindsym 1 exec i3-msg exit
   bindsym 2 exec reboot
   bindsym 3 exec shutdown -h now
@@ -259,26 +339,49 @@ mode "exit: [0]lock, [1]logout, [2]reboot, [3]shutdown" {
 bindsym $mod+x mode "exit: [0]lock, [1]logout, [2]reboot, [3]shutdown"
 # ---- END
 
+# keyboard language menu
+mode "keyboard: [0]si, [1]us" {
+  bindsym 0 exec "setxkbmap -layout si"
+  bindsym 1 exec "setxkbmap -layout us"
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+bindsym $mod+y mode "keyboard: [0]si, [1]us"
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
   status_command i3status -c ~/.config/i3status/config 
   # status_command i3status
-  i3bar_command i3bar --transparency
-  tray_padding 0
-  separator_symbol " ⏽ "
+  # i3bar_command i3bar --transparency
+  tray_padding 6
+  separator_symbol "  "
   # "󰇥" 
   # ""
 
   colors {
-    background #080711
-    statusline #ffffff
-    separator #666666
-
-    focused_workspace  #6157A9 #4F497F #ffffff
-    active_workspace   #333333 #5f676a #ffffff
-    inactive_workspace #333333 #222222 #888888
-    urgent_workspace   #2f343a #900000 #ffffff
-    binding_mode       #2f343a #900000 #ffffff
+    background         $base
+    statusline         $text
+    separator          $surface1
+    # focused_statusline $text
+    # focused_separator  $base
+    focused_workspace  $base $green    $base
+    active_workspace   $base $blue     $base
+    inactive_workspace $base $base     $text
+    urgent_workspace   $base $red      $base
+    binding_mode       $base $mauve    $base
   }
+
+  # colors {
+  #   background $bg
+  #   statusline $yellow
+  #   # separator #666666
+  #
+  #   #                   border  backgr. text
+  #   focused_workspace  $aqua     $aqua     $darkgray
+  #   active_workspace   $darkgray $darkgray $yellow
+  #   inactive_workspace $darkgray $darkgray $yellow
+  #   urgent_workspace   $red      $red      $bg
+  #   binding_mode       $red      $red      $bg
+  # }
 }

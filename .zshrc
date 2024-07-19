@@ -90,6 +90,38 @@ export EDITOR='nvim'
 export PATH="$HOME/.tmuxifier/bin:$PATH"
 
 eval "$(tmuxifier init -)"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# custom scripts
+export PATH=$PATH:"$HOME/.config/custom-scripts"
+
+# Doom Emacs
+export PATH=$PATH:"$HOME/.config/emacs/bin"
+
+# Conda
+export PATH=$PATH:$HOME/anaconda3/bin
+
+# Go
+export PATH=$PATH:/usr/local/go/bin
+export GOPATH=$HOME/gopath/
+
+# Cisco AnyConnect - NIO
+export PATH=$PATH:/opt/cisco/anyconnect/bin
+
+# Maven 3.6.3
+M2_HOME='/opt/apache-maven-3.6.3'
+export PATH=$PATH:"$M2_HOME/bin"
+
+# Netbeans
+export PATH=$PATH:"$HOME/netbeans-12.5/netbeans/bin"
+
+# # Set up fzf key bindings and fuzzy completion
+# source <(fzf --zsh)
+#
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -118,3 +150,12 @@ eval "$(tmuxifier init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias emacs="emacsclient -c -a 'emacs'"
+
