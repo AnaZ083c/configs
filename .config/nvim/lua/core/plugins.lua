@@ -15,12 +15,13 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- colorschemes
-  use 'ellisonleao/gruvbox.nvim'
+  use { "ellisonleao/gruvbox.nvim" }
   use 'tiagovla/tokyodark.nvim'
   use 'rakr/vim-one'
   use 'stankovictab/mgz.nvim'
   use 'rafalbromirski/vim-aurora'
   use 'yonlu/omni.vim'
+  use { "catppuccin/nvim", as = "catppuccin" }
 
   -- misc 
   use 'nvim-tree/nvim-tree.lua'
