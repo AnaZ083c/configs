@@ -75,6 +75,10 @@ local function get_debugpy(directory)
   local venv = os.getenv("VIRTUAL_ENV")
 
   if vim.bo.filetype ~= "python" then
+    print(
+      "Not a python file\n" ..
+      "Using default debugging environment: " .. default .. "\n"
+    )
     vim.api.nvim_out_write(
       "Not a python file\n" ..
       "Using default debugging environment: " .. default .. "\n"
@@ -83,6 +87,10 @@ local function get_debugpy(directory)
   end
 
   if venv == nil or venv == "" then
+    print(
+      "No venv in use.\n" ..
+      "Using default debugging environment: " .. default .. "\n"
+    )
     vim.api.nvim_out_write(
       "No venv in use.\n" ..
       "Using default debugging environment: " .. default .. "\n"
@@ -92,6 +100,10 @@ local function get_debugpy(directory)
 
   local venv_version = execute_command(venv .. "/bin/python --version")
   if venv_version == nil then
+    print(
+      "Couldn't find your venv Python version.\n" ..
+      "Using default debugging environment: " .. default .. "\n"
+    )
     vim.api.nvim_out_write(
       "Couldn't find your venv Python version.\n" ..
       "Using default debugging environment: " .. default .. "\n"
@@ -104,6 +116,7 @@ local function get_debugpy(directory)
 
     -- if coresponding version exists, use that one
     if version == venv_version then
+      print("Debugging environment set to: " .. debugger[2] .. "\n")
       vim.api.nvim_out_write("Debugging environment set to: " .. debugger[2] .. "\n")
       return debugger[2]  -- debugger venv path to bin/python
     end
@@ -116,16 +129,20 @@ local function get_debugpy(directory)
     string.match(venv_version, "%d+%.%d+%.%d+")
   )
 
+  print("Creating a new debugging environment ...")
   vim.api.nvim_out_write("Creating a new debugging environment ...\n")
   local exec = execute_command(
     string.format("python -m venv %s && ", debugpy_path) ..
+    string.format("%s/bin/python -m ensurepip --upgrade && ", debugpy_path) ..
     string.format("%s/bin/python -m pip install debugpy", debugpy_path)
   )
   if exec ~= "" then
+    print("Debugging environment set to: " .. debugpy_path .. "\n")
     vim.api.nvim_out_write("Debugging environment set to: " .. debugpy_path .. "\n")
     return debugpy_path
   end
 
+  print("Using default debugging environment\n")
   vim.api.nvim_out_write("Using default debugging environment\n")
   return default
 end
