@@ -6,6 +6,7 @@ The purpose of this repo is to create a development enviroment that is as effici
     - [How-To-Use guide for this specific config](./.config/nvim/README.md)
 3. [Tmux and Tmuxifier setup](#2-tmux)
 4. [i3 Window Manager](#3-i3-window-manager)
+    - [Configuring low battery level notification](./.config/i3/README.md)
 5. [Sources](#sources)
 
 
@@ -39,6 +40,11 @@ cp -r ~/path/to/this/repo/.config/nvim ~/.config/nvim
 ```
 You may or may not have to install dependencies for all the plugins to work. If something doesn't work as intended, please take a look at one of the nvim config videos listed among sources below.
 
+A helpfull command within `nvim` is also `checkhealth`, to check if all plugins work correctly and if not, it provides helpfull information to fix the problems:
+```shell
+:checkhealth
+```
+
 It is recommended to watch at least the first video for NeoVim config, to get you started with the basics of configuring neovim using lua and Packer package manager.
 
 - Packer official docs/repo: https://github.com/wbthomason/packer.nvim
@@ -71,14 +77,19 @@ Tmux config is located in `./.tmux.conf`.
 git clone https://github.com/tmux-plugins/tpm.git ~/.tmux/plugins/tpm
 ```
 
+To use the config provided here:
+```shell
+cp ~/path/to/this/repo/.tmux.conf ~/.tmux.conf
+```
+
 To apply the config:
 ```shell
 # Start tmux
 tmux
 
 # Within the tmux session
-Ctrl + s + I  # To install all plugins
-Ctrl + s + r  # Source tmux (refresh)
+Ctrl+s+I  # To install all plugins
+Ctrl+s+r  # Source tmux (refresh)
 ```
 
 ### Tmuxifier
@@ -108,6 +119,8 @@ That's to make your desktop environment not as dependant on mouse clicking as th
 | i3lock | locking the screen |
 | brightnessctl | adjusting screen brightness |
 | playerctl | audio player keyboard controlls (pause, resume, skip, go back) |
+| rofi | window switcher, app launcher and dmenu replacement |
+| blueman | for bluetooth support (requires bluez and bluez-obexd) |
 
 **Note**: you'll also need to install a `CodeNewRoman Nerd Font Mono` to make all the icons work properly.
 
@@ -124,7 +137,7 @@ sudo apt install i3
 ### 2. install requirements
 ```shell
 sudo apt update
-sudo apt install feh redshift i3lock brightnessctl playerctl
+sudo apt install feh redshift i3lock brightnessctl playerctl rofi blueman bluez bluez-obexd
 ```
 
 **Install font**
@@ -150,10 +163,11 @@ reboot
 1. Clone this repo wherever you like
 2. Copy `this-repo/.config/i3` and `this-repo/.config/i3status` into `~/.config/`
 ```shell
-cp path-to-this-repo/.config/i3* ~/.config/
+cp path-to-this-repo/.config/i3* ~/.config/ && \
+cp path-to-this-repo/.config/rofi ~/.config/
 ```
 3. Reload your config file: `$mod+Shift+c`
-    - `$mod` is whatever key you chose in the setup wizard; it could be `Alt` or `Win`
+    - `$mod` is whatever key you chose in the setup wizard; it could be `Alt` or `Win`: this config is made with `Alt` as the `$mod`
 
 ## Sources
 ### NVIM config
