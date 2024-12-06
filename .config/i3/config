@@ -9,7 +9,8 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-# mod = Alt, sup = WinKey
+# mod = Alt
+# sup = WinKey (or System)
 set $mod Mod1
 set $sup Mod4
 
@@ -95,6 +96,9 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
+# bindsym $sup+Return exec "flatpak run org.wezfurlong.wezterm"
+
+# start default terminal
 bindsym $sup+Return exec i3-sensible-terminal
 
 # kill focused window
@@ -105,7 +109,8 @@ bindsym $mod+Shift+q kill
 # nf: normal foreground
 # sb: selected background
 # sf: selected foreground
-bindsym $mod+d exec --no-startup-id dmenu_run -nb "#24273a" -nf "#cad3f5" -sb "#8aadf4" -sf "#24273a" -fn "SauceCodePro Nerd Font Medium"
+# bindsym $mod+d exec --no-startup-id dmenu_run -nb "#24273a" -nf "#cad3f5" -sb "#8aadf4" -sf "#24273a" -fn "SauceCodePro Nerd Font Medium"
+bindcode $mod+40 exec "rofi -show drun"
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -206,7 +211,6 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # lock screen
-# bindsym $mod+Control+Return exec "i3lock -i ~/Wallpapers/lock1920x1080.png -t -f -e"
 bindsym $mod+Control+Return exec "i3lock -c 000000 -t -f -e"
 
 # resize window (you can also use the mouse for that)
@@ -236,6 +240,11 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Start picom
+### for opacity in termianl, etc. (fancy ram eating stuff)
+### NOTE: uncomment if you're sure your PC/laptop can handle it
+# exec_always --no-startup-id picom --experimental-backend
+
 # ----- Multiple monitor configs
 # Multiple displays
 include $HOME/.config/i3/workspaces.conf
@@ -251,7 +260,10 @@ set $primaryMonitor eDP
 exec --no-startup-id xset s off -dpms
 
 # Enable night light
-exec --no-startup-id redshift -P -O 4000
+exec --no-startup-id redshift -P -O 4242
+
+# Startup Teams
+exec --no-startup-id teams-for-linux
 
 # Start emacs client on startup for faster loading times
 # exec --no-startup-id emacsclient -c -a 'emacs'
@@ -301,12 +313,13 @@ client.background        $base
 
 # ------- Gaps
 # Configure 5px of space between windows and to the screen edges.
-gaps inner 5
+# gaps inner 5  # was set
 
 # Configure an additional 5px of extra space to the screen edges,
 # for a total gap of 10px to the screen edges, and 5px between windows.
-gaps outer 5
+# gaps outer 5  # was set
 
+# this was not set
 # Overwrite gaps to 0, I need all the space I can get on workspace 3.
 #workspace 3 gaps inner 0
 #workspace 3 gaps outer 0
@@ -371,17 +384,4 @@ bar {
     urgent_workspace   $base $red      $base
     binding_mode       $base $mauve    $base
   }
-
-  # colors {
-  #   background $bg
-  #   statusline $yellow
-  #   # separator #666666
-  #
-  #   #                   border  backgr. text
-  #   focused_workspace  $aqua     $aqua     $darkgray
-  #   active_workspace   $darkgray $darkgray $yellow
-  #   inactive_workspace $darkgray $darkgray $yellow
-  #   urgent_workspace   $red      $red      $bg
-  #   binding_mode       $red      $red      $bg
-  # }
 }

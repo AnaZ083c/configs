@@ -85,6 +85,7 @@ zsh-syntax-highlighting
 
 source $ZSH/oh-my-zsh.sh
 
+export PATH="$PATH:/opt/nvim-linux64/bin"
 export EDITOR='nvim'
 
 export PATH="$HOME/.tmuxifier/bin:$PATH"
@@ -107,6 +108,7 @@ export PATH=$PATH:$HOME/anaconda3/bin
 
 # Go
 export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$HOME/gopath/bin
 export GOPATH=$HOME/gopath/
 
 # Cisco AnyConnect - NIO
@@ -118,6 +120,9 @@ export PATH=$PATH:"$M2_HOME/bin"
 
 # Netbeans
 export PATH=$PATH:"$HOME/netbeans-12.5/netbeans/bin"
+
+# Yazi - TUI file manager
+. "$HOME/.cargo/env"
 
 # # Set up fzf key bindings and fuzzy completion
 # source <(fzf --zsh)
@@ -159,3 +164,14 @@ export NVM_DIR="$HOME/.nvm"
 
 alias emacs="emacsclient -c -a 'emacs'"
 
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
