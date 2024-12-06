@@ -22,13 +22,18 @@ vim.keymap.set('n', '<leader>ds<ESC>', function() dap_python.debug_selection() e
 -- Debug UI
 vim.api.nvim_set_keymap('n', '<leader>dt', ':lua require("dapui").toggle()<CR>', {noremap=true})
 vim.api.nvim_set_keymap('n', '<leader>dr', ':lua require("dapui").open({reset = true})<CR>', {noremap=true})
+
+local dap_loaded = false
 vim.keymap.set("n", "<F5>",
   function()
     if vim.bo.filetype == "python" then
       dap_python.setup(helper.get_debugpy(helper.constants.DEBUGPY_VENV_DIR))
     end
     dap_ext_vscode.load_launchjs(nil, {})
+
     dap.continue()
+    -- dap.terminate()
+    -- dap.run()
   end
 )
 vim.keymap.set("n", "<F9>", function() dap.continue() end)

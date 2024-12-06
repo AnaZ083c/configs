@@ -34,12 +34,18 @@
 | `<leader>fc` | grep through nvim colorschemes |
 | `<leader>fp` | pick a Python debugger |
 
+**NOTE**: Picking a Python debugger manually is now replaced with an automatic setting up of the Python debugger based on which Python 
+environment you're currently running when you press `F5` for debugging (see chapter below).
+
 
 ## 4. Vim DAP (Debug Adapter Protocol)
 
 ### Requirements
 
+**NOTE**: This step with the command line (below) is now optional, since this config is now able to automatically do this for you.
 ```shell
+# deprecated step
+
 mkdir ~/.virtualenvs
 cd ~/.virtualenvs
 python -m venv debugpy
@@ -62,5 +68,4 @@ from the prompt.
 | `<leader>bc` | clear breakpoint |
 | `<leader>dt` | toggle DAP UI |
 | `<leader>dr` | reset DAP UI (won't prompt for a configuration on the next run) |
-
 

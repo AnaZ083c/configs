@@ -3,7 +3,9 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "c",
     "lua",
+    "rasi",
     "rust",
+    "requirements",
     "ruby",
     "vim",
     "html",
@@ -17,7 +19,8 @@ require'nvim-treesitter.configs'.setup {
     "scss",
     "markdown",
     "markdown_inline",
-    "go"
+    "go",
+    "terraform"
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
