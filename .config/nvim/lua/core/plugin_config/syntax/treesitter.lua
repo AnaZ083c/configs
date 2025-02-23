@@ -3,9 +3,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "c",
     "lua",
-    "rasi",
     "rust",
-    "requirements",
     "ruby",
     "vim",
     "html",
@@ -19,8 +17,7 @@ require'nvim-treesitter.configs'.setup {
     "scss",
     "markdown",
     "markdown_inline",
-    "go",
-    "terraform"
+    "go"
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -33,3 +30,10 @@ require'nvim-treesitter.configs'.setup {
     enable = true,
   },
 }
+
+vim.filetype.add({
+  extension = {
+    rasi = "json",
+    vimwiki = "markdown",
+  }
+})

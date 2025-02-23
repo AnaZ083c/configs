@@ -34,7 +34,8 @@
 | `<leader>fc` | grep through nvim colorschemes |
 | `<leader>fp` | pick a Python debugger |
 
-**NOTE**: Picking a Python debugger manually is now replaced with an automatic setting up of the Python debugger based on which Python 
+> [!NOTE]
+> Picking a Python debugger manually is now replaced with an automatic setting up of the Python debugger based on which Python 
 environment you're currently running when you press `F5` for debugging (see chapter below).
 
 
@@ -42,7 +43,8 @@ environment you're currently running when you press `F5` for debugging (see chap
 
 ### Requirements
 
-**NOTE**: This step with the command line (below) is now optional, since this config is now able to automatically do this for you.
+> [!NOTE]
+> This step with the command line (below) is now optional, since this config is now able to automatically do this for you.
 ```shell
 # deprecated step
 
@@ -52,7 +54,8 @@ python -m venv debugpy
 debugpy/bin/python -m pip install debugpy
 ```
 
-**NOTE**: This configuration also accepts vscode launch configurations. To use those, simply create a `.vscode/launch.json` inside your workspace (your project root directory)
+> [!NOTE]
+> This configuration also accepts vscode launch configurations. To use those, simply create a `.vscode/launch.json` inside your workspace (your project root directory)
 as you normally would when developing in VSCode. Then, to load this configuration, press `F5` and choose your configuration 
 from the prompt.
 
@@ -68,4 +71,27 @@ from the prompt.
 | `<leader>bc` | clear breakpoint |
 | `<leader>dt` | toggle DAP UI |
 | `<leader>dr` | reset DAP UI (won't prompt for a configuration on the next run) |
+
+## 5. AI (Ollama for a local 'copilot')
+### Requirements
+
+For this to work, you must have Ollama installed. You can install it as shown below.
+```shell
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+Then, you must also pull a model you'd like to use locally. Keep in mind that 7B models require 8 GB of RAM, 16 GB to run 13B models, and 32 GB to run the 33B models.
+
+I personally recommend the Mistral model, since it's fine-tuned to suit the programmers best.
+```shell
+ollama pull mistral
+```
+
+For more info, you can check the official [Ollama GitHub page](https://github.com/ollama/ollama) or their [website](https://ollama.com/search) with all the available models to choose from.
+
+### Usage
+| keymaps | what it does |
+| -------------- | --------------- |
+| `<leader>ai` | Opens up actions to choose from |
+| `<leader>ap` | Continue the chat in the prompt buffer |
 

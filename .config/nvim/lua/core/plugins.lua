@@ -28,7 +28,9 @@ return require('packer').startup(function(use)
   use 'nvim-tree/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
   use 'nvim-treesitter/nvim-treesitter'
-  use 'hrsh7th/nvim-cmp'
+  -- use {'tzachar/cmp-ai', requires = {'nvim-lua/plenary.nvim'}}  -- AI completion (ollama)
+  -- use {'hrsh7th/nvim-cmp', requires = {'tzachar/cmp-ai'}}
+  use {'hrsh7th/nvim-cmp'}
   use 'hrsh7th/cmp-nvim-lsp'
   use 'L3MON4D3/LuaSnip'
   use 'saadparwaiz1/cmp_luasnip'
@@ -57,11 +59,25 @@ return require('packer').startup(function(use)
   use "lewis6991/gitsigns.nvim"
   use "terrortylor/nvim-comment"
 
+  -- Markdown renderer
+  use {
+    'MeanderingProgrammer/render-markdown.nvim',
+    after = { 'nvim-treesitter' },
+    requires = { 'nvim-tree/nvim-web-devicons', opt = true },
+    config = function()
+      require('render-markdown').setup({})
+    end
+  }
+
   -- DAP - debuggers
   use "mfussenegger/nvim-dap"
   use 'mfussenegger/nvim-dap-python'
   use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"} }
   use 'theHamsta/nvim-dap-virtual-text'
+
+  -- AI - a local copilot
+  use { "David-Kunz/gen.nvim" }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
