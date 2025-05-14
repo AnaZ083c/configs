@@ -7,4 +7,4 @@ vim.o.termguicolors = true
 -- vim.g.mgz_italic = true
 -- vim.g.mgz_uniform_diff_background = true
 
-vim.cmd [[ colorscheme catppuccin-frappe ]]
+vim.cmd [[ colorscheme catppuccin-macchiato ]]

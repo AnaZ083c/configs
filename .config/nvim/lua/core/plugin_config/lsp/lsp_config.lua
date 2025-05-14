@@ -15,7 +15,8 @@ require("mason-lspconfig").setup({
     "marksman",
     "jedi_language_server",
     "vimls",
-    "terraformls"
+    "terraformls",
+    "regols"
   }
 })
 
@@ -60,4 +61,6 @@ require("lspconfig").marksman.setup {  capabilities = capabilities,}
 require("lspconfig").jedi_language_server.setup {  capabilities = capabilities,}
 require("lspconfig").vimls.setup {  capabilities = capabilities,}
 require("lspconfig").terraformls.setup {  capabilities = capabilities,}
+require("lspconfig").regols.setup {  capabilities = capabilities,}
+require("lspconfig").ansiblels.setup {  capabilities = capabilities,}
 
