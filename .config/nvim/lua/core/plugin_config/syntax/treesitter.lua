@@ -3,8 +3,11 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "c",
     "lua",
+    "rasi",
     "rust",
+    "requirements",
     "ruby",
+    "rego",
     "vim",
     "html",
     "xml",
@@ -33,7 +36,9 @@ require'nvim-treesitter.configs'.setup {
 
 vim.filetype.add({
   extension = {
-    rasi = "json",
+    tfstate = "json",
+    rasi = "rasi",
     vimwiki = "markdown",
-  }
+  },
 })
+

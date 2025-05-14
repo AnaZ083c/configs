@@ -1,3 +1,4 @@
+require("core.plugin_config.ai")
 require("core.plugin_config.looks")
 require("core.plugin_config.search")
 require("core.plugin_config.lsp")
