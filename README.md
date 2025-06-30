@@ -1,5 +1,29 @@
-# Linux (Ubuntu) Development Environment
-The purpose of this repo is to create a development enviroment that is as efficient to a developer as possible; independent of the mouse as much as possible.
+# [ I ] Distro Setup Scripts
+Can be found in `./scripts/distro_setups` and consists of scripts that set up your distro automatically. The setups are mostly made for computers with Nvidia cards, which are a bit of a hassle to get working on Linux, depending on the distro.
+
+For any script in the `scripts/distro_setups` folder, you can get help for any of the scripts like shown below (example for `Endeavour OS`):
+```bash
+# EndeavourOS is the closest to vanilla Arch and is also based on Arch,
+# so it's located in the arch-linux subdirectory
+cd scripts/distro_setups/arch_linux
+
+# run the help for the endeavour-os-nvidia script
+bash endeavour-os-nvidia.sh --help
+```
+
+```bash
+# output
+This is a script for automatic setting up of EndeavourOS with all the necesary Nvidia drivers and essentials for gaming
+
+Usage:
+        ./endeavour-os-nvidia.sh [--optimus | -o | --help | -h]
+
+        --optimus, -o   Using this, the system will be setup with prime and envycontrol for switching between the GPUs
+        --help, -h      This help
+```
+
+# [ II ] Linux (Ubuntu) Development Environment
+This repo also includes configs used to create a development enviroment (for Ubuntu) that is as efficient to a developer as possible; independent of the mouse as much as possible.
 
 ## Table of Contents
 1. [Neovim setup](#1-neovim)
