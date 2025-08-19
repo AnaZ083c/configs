@@ -20,7 +20,8 @@ require'nvim-treesitter.configs'.setup {
     "scss",
     "markdown",
     "markdown_inline",
-    "go"
+    "go",
+    "terraform"
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
@@ -38,7 +39,9 @@ vim.filetype.add({
   extension = {
     tfstate = "json",
     rasi = "rasi",
+    codecompanion = "markdown",
     vimwiki = "markdown",
+    yml = "yaml.ansible",
   },
 })
 
